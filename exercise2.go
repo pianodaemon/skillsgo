@@ -170,13 +170,13 @@ func rollDice() int {
 	return dice[rand.Intn(len(dice))]
 }
 
-const maxAttempts = 4
-
+var maxAttempts int
 var interval int
 
 func main() {
 
 	flag.IntVar(&interval, "inter", 5000, "The interval among each roll")
+	flag.IntVar(&maxAttempts, "times", 5, "Number of times to roll the dice")
 	flag.Parse()
 
 	inceptRoll := func() *Task {
