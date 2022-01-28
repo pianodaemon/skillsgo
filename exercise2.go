@@ -49,7 +49,6 @@ func (p *Pool) shutdown() {
 
 	<-p.quit
 
-	fmt.Printf("Gracefully shuting down\n")
 	for _, t := range p.tasks {
 
 		t.Terminate = true
@@ -60,7 +59,7 @@ func (p *Pool) shutdown() {
 func doInterruption() {
 
 	process, _ := os.FindProcess(os.Getpid())
-	process.Signal(syscall.SIGINT)
+	process.Signal(syscall.SIGTERM)
 }
 
 // Collects all the error of the tasks
@@ -140,6 +139,7 @@ calderon:
 
 	select {
 	case <-p.finished:
+		fmt.Printf("Gracefully shuting down\n")
 		doInterruption()
 	case latestErr = <-p.errChannel:
 		onErrorHandler(latestErr)
@@ -220,7 +220,6 @@ func main() {
 		inceptRoll(), // Task 7
 	)
 
-	/* All the errors are stored at the output variables Resolutions */
 	p.Run(func(err error) {
 
 		if err != nil {
