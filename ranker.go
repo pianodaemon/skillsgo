@@ -273,7 +273,7 @@ func main() {
 				cidx = 1
 			}
 
-			fmt.Printf("%d. %s, %d pt%c\n", rowIdx, dig.Team, dig.Points, plural[cidx])
+			fmt.Printf("%d. %s, %d pt%c\n", rowIdx+1, dig.Team, dig.Points, plural[cidx])
 			rowIdx++
 			goto gearUpPrint
 		}
