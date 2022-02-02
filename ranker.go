@@ -127,7 +127,7 @@ func demo(ext ExtractorEngine, j *RankingJob) {
 				// In this situation we assume that
 				// there is not any likelihood of having
 				// two digestion with the same name, So..
-				// The solely possible results expecteed are 1 and -1
+				// The solely possible results expected are 1 and -1
 				return strings.Compare(digAlpha.Team, digBeta.Team) == -1
 			}
 
@@ -142,7 +142,7 @@ func pull(rd io.Reader, discard chan interface{}, onFail func(error)) <-chan *Re
 
 	out := make(chan *Record)
 
-	regColCont := regexp.MustCompile(`(?P<Team>[a-zA-Z]+\s?[a-zA-Z]+) (?P<Score>\d{1})`)
+	regColCont := regexp.MustCompile(`(?P<Team>[a-zA-Z]+\s?[a-zA-Z]+) (?P<Score>\d+)`)
 	TeamIdx := regColCont.SubexpIndex("Team")
 	ScoreIdx := regColCont.SubexpIndex("Score")
 
